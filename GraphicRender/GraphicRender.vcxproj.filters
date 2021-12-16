@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{94bc97cd-69ec-42a5-9017-87e7aba8cd53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Draw">
+      <UniqueIdentifier>{3e525264-2b94-4774-9b3a-0d0ccca24443}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -27,28 +33,22 @@
     <ClInclude Include="framework.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Draw.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Draw\Draw.h">
+      <Filter>Draw</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphicRender.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Draw.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Math\Vector2.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Draw\Draw.cpp">
+      <Filter>Draw</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

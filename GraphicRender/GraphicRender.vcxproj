@@ -117,6 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>C:\git\GraphicRender\GraphicRender\GraphicRender\Math;C:\git\GraphicRender\GraphicRender\GraphicRender\Draw;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -140,19 +141,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Draw.h" />
+    <ClInclude Include="Draw\Draw.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GraphicRender.h" />
+    <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Vector2.h" />
-    <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Draw.cpp" />
+    <ClCompile Include="Draw\Draw.cpp" />
     <ClCompile Include="GraphicRender.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="Vector3.cpp" />
+    <ClCompile Include="Math\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GraphicRender.rc" />

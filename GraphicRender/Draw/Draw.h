@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "framework.h"
+#include <windows.h>
 #include "Vector2.h"
 
 float GetXEquationOfLine(const Vector2& v1, const Vector2& v2, const float x);
