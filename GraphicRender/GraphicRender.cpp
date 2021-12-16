@@ -4,6 +4,7 @@
 #define MAX_LOADSTRING 100
 
 HINSTANCE hInst;
+HWND hWndMain;
 WCHAR szTitle[MAX_LOADSTRING];
 WCHAR szWindowClass[MAX_LOADSTRING];
 
@@ -84,21 +85,35 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
+void SetCartesianCoordinateSystem(HDC hdc, HWND hWnd)
+{
+    RECT winRect;
+    GetClientRect(hWnd, &winRect);
+    SetMapMode(hdc, MM_LOENGLISH);
+    SetViewportOrgEx(hdc, (int)(winRect.right * 0.5f), (int)(winRect.bottom * 0.5f), NULL);
+}
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+    case WM_CREATE:
+        hWndMain = hWnd;
+        break;
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            
+
             EndPaint(hWnd, &ps);
         }
         break;
+
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
+
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
