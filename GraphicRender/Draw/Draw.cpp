@@ -39,7 +39,7 @@ void SetLineCoord(std::vector<Vector2>* const outPoints, const Vector2& v1, cons
 	}
 }
 
-void SetEllipseCoord(std::vector<Vector2>* const outPoints, const Vector2& center, float radius)
+void SetCircleCoord(std::vector<Vector2>* const outPoints, const Vector2& center, float radius)
 {
 	for (std::vector<Vector2>::size_type index = 0; index < outPoints->size(); index++)
 	{
@@ -73,7 +73,7 @@ void DrawLine(HDC hdc, float startX, float startY, float endX, float endY, COLOR
 void DrawCircle(HDC hdc, const Vector2& center, float radius, COLORREF color)
 {
 	std::vector<Vector2> points(360);
-	SetEllipseCoord(&points, center, radius);
+	SetCircleCoord(&points, center, radius);
 	for (const auto& v : points)
 	{
 		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);
@@ -84,7 +84,7 @@ void DrawCircle(HDC hdc, float x, float y, float radius, COLORREF color)
 {
 	std::vector<Vector2> points(360);
 	Vector2 center(x, y);
-	SetEllipseCoord(&points, center, radius);
+	SetCircleCoord(&points, center, radius);
 	for (const auto& v : points)
 	{
 		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);
