@@ -85,12 +85,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-void SetCartesianCoordinateSystem(HDC hdc, HWND hWnd)
+void SetCartesianCoordinateSystem(HDC hDC, HWND hWnd)
 {
-    RECT winRect;
-    GetClientRect(hWnd, &winRect);
-    SetMapMode(hdc, MM_LOENGLISH);
-    SetViewportOrgEx(hdc, (int)(winRect.right * 0.5f), (int)(winRect.bottom * 0.5f), NULL);
+    RECT clientRect;
+    GetClientRect(hWnd, &clientRect);
+    SetMapMode(hDC, MM_LOMETRIC);
+    SetViewportOrgEx(hDC, (int)(clientRect.right * 0.5f), (int)(clientRect.bottom * 0.5f), NULL);
 }
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -100,14 +100,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_CREATE:
         hWndMain = hWnd;
         break;
+
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            SetCartesianCoordinateSystem(hdc, hWnd);
-            DrawCircle(hdc, 0, 0, 100, 0);
-            EndPaint(hWnd, &ps);
-        }
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+        SetCartesianCoordinateSystem(hdc, hWnd);
+        
+        EndPaint(hWnd, &ps);
+    }
         break;
 
     case WM_DESTROY:

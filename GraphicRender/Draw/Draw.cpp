@@ -48,17 +48,17 @@ void SetCircleCoord(std::vector<Vector2>* const outPoints, const Vector2& center
 	}
 }
 
-void DrawLine(HDC hdc, const Vector2& v1, const Vector2& v2, COLORREF color)
+void DrawLine(HDC hDC, const Vector2& v1, const Vector2& v2, COLORREF color)
 {
 	std::vector<Vector2> points(360);
 	SetLineCoord(&points, v1, v2);
 	for (const auto& v : points)
 	{
-		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);
+		SetPixel(hDC, (int)v.GetX(), (int)v.GetY(), color);
 	}
 }
 
-void DrawLine(HDC hdc, float startX, float startY, float endX, float endY, COLORREF color)
+void DrawLine(HDC hDC, float startX, float startY, float endX, float endY, COLORREF color)
 {
 	std::vector<Vector2> points;
 	Vector2 v1(startX, startY);
@@ -66,27 +66,27 @@ void DrawLine(HDC hdc, float startX, float startY, float endX, float endY, COLOR
 	SetLineCoord(&points, v1, v2);
 	for (const auto& v : points)
 	{
-		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);
+		SetPixel(hDC, (int)v.GetX(), (int)v.GetY(), color);
 	}
 }
 
-void DrawCircle(HDC hdc, const Vector2& center, float radius, COLORREF color)
+void DrawCircle(HDC hDC, const Vector2& center, float radius, COLORREF color)
 {
 	std::vector<Vector2> points(360);
 	SetCircleCoord(&points, center, radius);
 	for (const auto& v : points)
 	{
-		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);
+		SetPixel(hDC, (int)v.GetX(), (int)v.GetY(), color);
 	}
 }
 
-void DrawCircle(HDC hdc, float x, float y, float radius, COLORREF color)
+void DrawCircle(HDC hDC, float x, float y, float radius, COLORREF color)
 {
 	std::vector<Vector2> points(360);
 	Vector2 center(x, y);
 	SetCircleCoord(&points, center, radius);
 	for (const auto& v : points)
 	{
-		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);
+		SetPixel(hDC, (int)v.GetX(), (int)v.GetY(), color);
 	}
 }
