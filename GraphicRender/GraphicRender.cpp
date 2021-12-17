@@ -106,7 +106,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             SetCartesianCoordinateSystem(hdc, hWnd);
-            DrawLine(hdc, Vector2(0, 0), Vector2(10, 200), 0);
+            DrawLine(hdc, 0, 0, 100, 0, 0);
             EndPaint(hWnd, &ps);
         }
         break;
