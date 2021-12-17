@@ -1,5 +1,9 @@
 #include "Draw.h"
 
+#define PI (3.14159265359f)
+#define DEG2RAD (PI / 180)
+#define RAD2DEG (180 / PI)
+
 float GetYEquationOfLine(const Vector2& v1, const Vector2& v2, const float x)
 {
 	return (v2.GetY() - v1.GetY()) / (v2.GetX() - v1.GetX()) * (x - v1.GetX()) + v1.GetY();
@@ -35,9 +39,18 @@ void SetLineCoord(std::vector<Vector2>* const outPoints, const Vector2& v1, cons
 	}
 }
 
+void SetEllipseCoord(std::vector<Vector2>* const outPoints, const Vector2& center, float radius)
+{
+	for (std::vector<Vector2>::size_type index = 0; index < outPoints->size(); index++)
+	{
+		(*outPoints)[index].SetX(center.GetX() + radius * cosf(index * DEG2RAD));
+		(*outPoints)[index].SetY(center.GetY() + radius * sinf(index * DEG2RAD));
+	}
+}
+
 void DrawLine(HDC hdc, const Vector2& v1, const Vector2& v2, COLORREF color)
 {
-	std::vector<Vector2> points;
+	std::vector<Vector2> points(360);
 	SetLineCoord(&points, v1, v2);
 	for (const auto& v : points)
 	{
@@ -51,6 +64,27 @@ void DrawLine(HDC hdc, float startX, float startY, float endX, float endY, COLOR
 	Vector2 v1(startX, startY);
 	Vector2 v2(endX, endY);
 	SetLineCoord(&points, v1, v2);
+	for (const auto& v : points)
+	{
+		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);
+	}
+}
+
+void DrawCircle(HDC hdc, const Vector2& center, float radius, COLORREF color)
+{
+	std::vector<Vector2> points(360);
+	SetEllipseCoord(&points, center, radius);
+	for (const auto& v : points)
+	{
+		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);
+	}
+}
+
+void DrawCircle(HDC hdc, float x, float y, float radius, COLORREF color)
+{
+	std::vector<Vector2> points(360);
+	Vector2 center(x, y);
+	SetEllipseCoord(&points, center, radius);
 	for (const auto& v : points)
 	{
 		SetPixel(hdc, (int)v.GetX(), (int)v.GetY(), color);

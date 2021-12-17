@@ -100,13 +100,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_CREATE:
         hWndMain = hWnd;
         break;
-
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             SetCartesianCoordinateSystem(hdc, hWnd);
-            DrawLine(hdc, 0, 0, 100, 0, 0);
+            DrawCircle(hdc, 0, 0, 100, 0);
             EndPaint(hWnd, &ps);
         }
         break;
