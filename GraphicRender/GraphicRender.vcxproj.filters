@@ -19,6 +19,9 @@
     <Filter Include="Draw">
       <UniqueIdentifier>{3e525264-2b94-4774-9b3a-0d0ccca24443}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{5f2d07f7-f000-49f8-a983-d98cc2bd3cbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -39,6 +42,9 @@
     <ClInclude Include="Draw\Draw.h">
       <Filter>Draw</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\Utility.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphicRender.cpp">
@@ -49,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="Draw\Draw.cpp">
       <Filter>Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Utility.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -85,14 +85,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-void SetCartesianCoordinateSystem(HDC hDC, HWND hWnd)
-{
-    RECT clientRect;
-    GetClientRect(hWnd, &clientRect);
-    SetMapMode(hDC, MM_LOMETRIC);
-    SetViewportOrgEx(hDC, (int)(clientRect.right * 0.5f), (int)(clientRect.bottom * 0.5f), NULL);
-}
-
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -106,6 +98,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
         SetCartesianCoordinateSystem(hdc, hWnd);
+        
         
         EndPaint(hWnd, &ps);
     }

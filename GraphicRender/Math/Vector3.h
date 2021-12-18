@@ -1,13 +1,16 @@
 #pragma once
 
 #include <cmath>
+#include <cfloat>
+
+#include "Utility.h"
 
 class Vector3
 {
 public:
-	Vector3() = default;
-	Vector3(float x, float y, float z);
-	Vector3(const Vector3& source) = default;
+	Vector3();
+	Vector3(const float x, const float y, const float z);
+	Vector3(const Vector3& ref) = default;
 	~Vector3() = default;
 
 	Vector3 GetVector() const;
@@ -23,23 +26,29 @@ public:
 	float GetLength() const;
 	float GetLengthSq() const;
 
-	static float Dot(const Vector3& left, const Vector3& right);
-	static Vector3 Cross(const Vector3& left, const Vector3& right);
-
-	static float GetCosTheta(const Vector3& left, const Vector3& right);
-	bool IsNormal(const Vector3& left, const Vector3& right);
-
 	void Normalize();
-	Vector3 Normalized();
+	Vector3 Normalized() const;
 
-	Vector3 operator+(const Vector3& source) const;
-	Vector3 operator-(const Vector3& source) const;
-	Vector3 operator*(const int value) const;
+	static Vector3 ClampLength(const Vector3& vector, float maxLength);
+	static float GetDistance(const Vector3& lhs, const Vector3& rhs);
+	static float Dot(const Vector3& lhs, const Vector3& rhs);
+	static Vector3 Cross(const Vector3 lhs, const Vector3& rhs);
+	static float GetAngle(const Vector3& lhs, const Vector3& rhs);
 
-	Vector3 operator+=(const Vector3& source);
-	Vector3 operator-=(const Vector3& source);
-	Vector3 operator*=(const int value);
-	bool operator==(const Vector3& source) const;
+	Vector3 operator+(const Vector3& other);
+	Vector3 operator-(const Vector3& other);
+	Vector3 operator-();
+	Vector3 operator*(const float scalar);
+	Vector3 operator/(const float scalar);
+
+	Vector3 operator+=(const Vector3& other);
+	Vector3 operator-=(const Vector3& other);
+	Vector3 operator*=(const Vector3& other);
+	Vector3 operator*=(const float scalar);
+	Vector3 operator/=(const float scalar);
+
+	bool operator==(const Vector3& other);
+	bool operator!=(const Vector3& other);
 
 private:
 	float mX;

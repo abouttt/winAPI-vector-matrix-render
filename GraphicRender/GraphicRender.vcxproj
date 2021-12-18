@@ -117,7 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <AdditionalIncludeDirectories>C:\git\GraphicRender\GraphicRender\Draw;C:\git\GraphicRender\GraphicRender\Math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\git\GraphicRender\GraphicRender\Utility;C:\git\GraphicRender\GraphicRender\Draw;C:\git\GraphicRender\GraphicRender\Math;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,11 +147,13 @@
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Utility\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Draw\Draw.cpp" />
     <ClCompile Include="GraphicRender.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="Utility\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GraphicRender.rc" />
