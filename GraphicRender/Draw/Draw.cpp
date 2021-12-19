@@ -20,7 +20,7 @@ void SetLineCoord(std::vector<Vector2>* const outPoints, const Vector2& v1, cons
 		outPoints->resize((int)xLength);
 		for (std::vector<int>::size_type i = 0; i < outPoints->size(); i++)
 		{
-			(*outPoints)[i].SetX(i);
+			(*outPoints)[i].SetX((float)i);
 			(*outPoints)[i].SetY(GetYEquationOfLine(v1, v2, (*outPoints)[i].GetX()));
 		}
 	}
@@ -29,7 +29,7 @@ void SetLineCoord(std::vector<Vector2>* const outPoints, const Vector2& v1, cons
 		outPoints->resize((int)yLength);
 		for (std::vector<int>::size_type i = 0; i < outPoints->size(); i++)
 		{
-			(*outPoints)[i].SetY(i);
+			(*outPoints)[i].SetY((float)i);
 			(*outPoints)[i].SetX(GetXEquationOfLine(v1, v2, (*outPoints)[i].GetY()));
 		}
 	}
@@ -37,10 +37,10 @@ void SetLineCoord(std::vector<Vector2>* const outPoints, const Vector2& v1, cons
 
 void SetCircleCoord(std::vector<Vector2>* const outPoints, const Vector2& center, float radius)
 {
-	for (std::vector<Vector2>::size_type index = 0; index < outPoints->size(); index++)
+	for (std::vector<int>::size_type degree = 0; degree < outPoints->size(); degree++)
 	{
-		(*outPoints)[index].SetX(center.GetX() + radius * cosf(Deg2Rad((float)index)));
-		(*outPoints)[index].SetY(center.GetY() + radius * sinf(Deg2Rad((float)index)));
+		(*outPoints)[degree].SetX(center.GetX() + radius * cosf(Deg2Rad((float)degree)));
+		(*outPoints)[degree].SetY(center.GetY() + radius * sinf(Deg2Rad((float)degree)));
 	}
 }
 
@@ -68,11 +68,15 @@ void DrawLine(HDC hDC, const float x1, const float y1, const float x2, const flo
 
 void DrawCircle(HDC hDC, const Vector2& center, const float radius, COLORREF color)
 {
-	std::vector<Vector2> points(360);
-	SetCircleCoord(&points, center, radius);
-	for (const auto& v : points)
+	float radian;
+	float x;
+	float y;
+	for (float degree = 0.0f; degree < 360.0f; degree += 0.1f)
 	{
-		SetPixel(hDC, (int)v.GetX(), (int)v.GetY(), color);
+		radian = Deg2Rad(degree);
+		x = center.GetX() + radius * cosf(radian);
+		y = center.GetY() + radius * sinf(radian);
+		SetPixel(hDC, (int)x, (int)y, color);
 	}
 }
 

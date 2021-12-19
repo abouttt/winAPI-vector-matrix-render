@@ -1,11 +1,11 @@
 #include "Utility.h"
 
-float Rad2Deg(float radian)
+float Rad2Deg(const float radian)
 {
 	return radian * 180 / PI;
 }
 
-float Deg2Rad(float degree)
+float Deg2Rad(const float degree)
 {
 	return degree * PI / 180;
 }
