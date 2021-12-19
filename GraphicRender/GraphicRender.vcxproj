@@ -145,6 +145,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="GraphicRender.h" />
     <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Utility\Utility.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="Draw\Draw.cpp" />
     <ClCompile Include="GraphicRender.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="Math\Vector3.cpp" />
     <ClCompile Include="Utility\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>

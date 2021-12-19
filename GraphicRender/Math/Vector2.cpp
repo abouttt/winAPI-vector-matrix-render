@@ -88,6 +88,13 @@ float Vector2::GetDistance(const Vector2& lhs, const Vector2& rhs)
 	return std::sqrtf((xLength * xLength) + (yLength * yLength));
 }
 
+float Vector2::GetDistanceSq(const Vector2& lhs, const Vector2& rhs)
+{
+	float xLength = rhs.mX - lhs.mX;
+	float yLength = rhs.mY - lhs.mY;
+	return (xLength * xLength) + (yLength * yLength);
+}
+
 float Vector2::Dot(const Vector2& lhs, const Vector2& rhs)
 {
 	return (lhs.mX * rhs.mX) + (lhs.mY + rhs.mY);
@@ -164,8 +171,8 @@ Vector2 Vector2::operator*=(const float scalar)
 
 bool Vector2::operator==(const Vector2& other)
 {
-	float xAbs = std::fabsf(mX - other.mX);
-	float yAbs = std::fabsf(mY - other.mY);
+	float xAbs = std::abs(mX - other.mX);
+	float yAbs = std::abs(mY - other.mY);
 	return (xAbs <= FLT_EPSILON && yAbs <= FLT_EPSILON);
 }
 

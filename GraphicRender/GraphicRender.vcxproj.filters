@@ -45,6 +45,9 @@
     <ClInclude Include="Utility\Utility.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GraphicRender.cpp">
@@ -58,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="Utility\Utility.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector3.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

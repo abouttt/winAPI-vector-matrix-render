@@ -28,7 +28,10 @@ public:
 	Vector2 Normalized() const;
 
 	static Vector2 ClampLength(const Vector2& vector, float maxLength);
+
 	static float GetDistance(const Vector2& lhs, const Vector2& rhs);
+	static float GetDistanceSq(const Vector2& lhs, const Vector2& rhs);
+
 	static float Dot(const Vector2& lhs, const Vector2& rhs);
 	static float GetAngle(const Vector2& lhs, const Vector2& rhs);
 

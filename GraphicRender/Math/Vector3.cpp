@@ -104,6 +104,14 @@ float Vector3::GetDistance(const Vector3& lhs, const Vector3& rhs)
 	return std::sqrtf((xLength * xLength) + (yLength * yLength) + (zLength * zLength));
 }
 
+float Vector3::GetDistanceSq(const Vector3& lhs, const Vector3& rhs)
+{
+	float xLength = rhs.mX - lhs.mX;
+	float yLength = rhs.mY - lhs.mY;
+	float zLength = rhs.mZ - lhs.mZ;
+	return (xLength * xLength) + (yLength * yLength) + (zLength * zLength);
+}
+
 float Vector3::Dot(const Vector3& lhs, const Vector3& rhs)
 {
 	return (lhs.mX * rhs.mX) + (lhs.mY + rhs.mY) + (lhs.mZ + rhs.mZ);
@@ -193,9 +201,9 @@ Vector3 Vector3::operator/=(const float scalar)
 
 bool Vector3::operator==(const Vector3& other)
 {
-	float xAbs = std::fabsf(mX - other.mX);
-	float yAbs = std::fabsf(mY - other.mY);
-	float zAbs = std::fabsf(mZ - other.mZ);
+	float xAbs = std::abs(mX - other.mX);
+	float yAbs = std::abs(mY - other.mY);
+	float zAbs = std::abs(mZ - other.mZ);
 	return (xAbs <= FLT_EPSILON && yAbs <= FLT_EPSILON && zAbs <= FLT_EPSILON);
 }
 

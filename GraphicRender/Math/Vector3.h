@@ -30,7 +30,10 @@ public:
 	Vector3 Normalized() const;
 
 	static Vector3 ClampLength(const Vector3& vector, float maxLength);
+
 	static float GetDistance(const Vector3& lhs, const Vector3& rhs);
+	static float GetDistanceSq(const Vector3& lhs, const Vector3& rhs);
+
 	static float Dot(const Vector3& lhs, const Vector3& rhs);
 	static Vector3 Cross(const Vector3 lhs, const Vector3& rhs);
 	static float GetAngle(const Vector3& lhs, const Vector3& rhs);
