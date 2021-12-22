@@ -100,7 +100,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		HDC hdc = BeginPaint(hWnd, &ps);
 
 		SetCartesianCoordinateSystem(hdc, hWnd);
-		DrawCircle(hdc, Vector2(0,0), 100, 0);
+		DrawCircle(hdc, Vector2(0,0), 60, 0);
 
 		EndPaint(hWnd, &ps);
 	}
