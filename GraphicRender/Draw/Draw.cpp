@@ -93,7 +93,7 @@ void DrawCircle(HDC hDC, const Vector2& center, const float radius, COLORREF col
 	{
 		for (const auto& c : circleData)
 		{
-			SetPixel(hDC, c.GetX(), c.GetY(), 0);
+			SetPixel(hDC, (int)c.GetX(), (int)c.GetY(), 0);
 		}
 	}
 }
@@ -115,7 +115,31 @@ void DrawCircle(HDC hDC, const float x, const float y, const float radius, COLOR
 	{
 		for (const auto& c : circleData)
 		{
-			SetPixel(hDC, c.GetX(), c.GetY(), 0);
+			SetPixel(hDC, (int)c.GetX(), (int)c.GetY(), 0);
 		}
 	}
+}
+
+void DrawRectangle(HDC hDC, const Vector2& lb, const Vector2& rt, const Vector2& lt, const Vector2& rb, COLORREF color)
+{
+	DrawLine(hDC, lb.GetX(), lb.GetY(), rb.GetX(), rb.GetY(), color);
+	DrawLine(hDC, lb.GetX(), lb.GetY(), lt.GetX(), lt.GetY(), color);
+	DrawLine(hDC, rt.GetX(), rt.GetY(), lt.GetX(), lt.GetY(), color);
+	DrawLine(hDC, rt.GetX(), rt.GetY(), rb.GetX(), rb.GetY(), color);
+}
+
+void DrawRectangle(HDC hDC, const Vector2& leftBottom, const Vector2& rightTop, COLORREF color)
+{
+	DrawLine(hDC, leftBottom.GetX(), leftBottom.GetY(), rightTop.GetX(), leftBottom.GetY(), color);
+	DrawLine(hDC, leftBottom.GetX(), leftBottom.GetY(), leftBottom.GetX(), rightTop.GetY(), color);
+	DrawLine(hDC, rightTop.GetX(), rightTop.GetY(), leftBottom.GetX(), rightTop.GetY(), color);
+	DrawLine(hDC, rightTop.GetX(), rightTop.GetY(), rightTop.GetX(), leftBottom.GetY(), color);
+}
+
+void DrawRectangle(HDC hDC, const float left, const float bottom, const float right, const float top, COLORREF color)
+{
+	DrawLine(hDC, left, bottom, right, bottom, color);
+	DrawLine(hDC, left, bottom, left, top, color);
+	DrawLine(hDC, right, top, left, top, color);
+	DrawLine(hDC, right, top, right, bottom, color);
 }

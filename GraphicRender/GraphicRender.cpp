@@ -87,11 +87,30 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	static Rectangle2D rec(0, 0, 500, 500);
 	switch (message)
 	{
 	case WM_CREATE:
 		hWndMain = hWnd;
 
+		break;
+
+	case WM_LBUTTONDOWN:
+		rec.Translate(10, 0);
+		InvalidateRect(hWnd, NULL, TRUE);
+		break;
+
+	case WM_RBUTTONDOWN:
+		rec.Scaling(1.1f, 1.1f);
+		InvalidateRect(hWnd, NULL, TRUE);
+		break;
+
+	case WM_KEYDOWN:
+		if (wParam == VK_SPACE)
+		{
+			rec.RotateZ(30);
+			InvalidateRect(hWnd, NULL, TRUE);
+		}
 		break;
 
 	case WM_PAINT:
@@ -100,7 +119,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		HDC hdc = BeginPaint(hWnd, &ps);
 
 		SetCartesianCoordinateSystem(hdc, hWnd);
-		DrawCircle(hdc, Vector2(0,0), 60, 0);
+		rec.Draw(hdc, 0);
 
 		EndPaint(hWnd, &ps);
 	}
