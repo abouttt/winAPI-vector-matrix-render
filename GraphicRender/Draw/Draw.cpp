@@ -143,3 +143,9 @@ void DrawRectangle(HDC hDC, const float left, const float bottom, const float ri
 	DrawLine(hDC, right, top, left, top, color);
 	DrawLine(hDC, right, top, right, bottom, color);
 }
+
+void DrawCoordinate(HDC hDC, int leftX, int rightX, int upY, int downY, COLORREF color)
+{
+	DrawLine(hDC, (float)leftX, 0, (float)rightX, 0, color);
+	DrawLine(hDC, 0, (float)upY, 0, (float)downY, color);
+}

@@ -7,6 +7,7 @@ HINSTANCE hInst;
 HWND hWndMain;
 WCHAR szTitle[MAX_LOADSTRING];
 WCHAR szWindowClass[MAX_LOADSTRING];
+HBITMAP hBit;
 
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -85,42 +86,105 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	return TRUE;
 }
 
+Rectangle2D rec(0, 0, 300, 300);
+int cnt = 0;
+int cnt2 = 10;
+bool isStart = false;
+
+void DoubleBuffer()
+{
+	RECT crt;
+	HDC hdc, hMemDC;
+	HBITMAP OldBit;
+
+	GetClientRect(hWndMain, &crt);
+	hdc = GetDC(hWndMain);
+
+	hBit = CreateCompatibleBitmap(hdc, crt.right, crt.bottom);
+	hMemDC = CreateCompatibleDC(hdc);
+	OldBit = (HBITMAP)SelectObject(hMemDC, hBit);
+
+	FillRect(hMemDC, &crt, GetSysColorBrush(COLOR_WINDOW));
+
+	SetCartesianCoordinateSystem(hMemDC, hWndMain);
+	DrawCoordinate(hMemDC, -400, 400, 400, -400, 0);
+
+	rec.Draw(hMemDC, 0);
+
+	SelectObject(hMemDC, OldBit);
+	DeleteDC(hMemDC);
+	ReleaseDC(hWndMain, hdc);
+}
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	static Rectangle2D rec(0, 0, 500, 500);
+	HDC hdc, hMemDC;
+	PAINTSTRUCT ps;
+	HBITMAP OldBit;
+	RECT crt;
+
 	switch (message)
 	{
 	case WM_CREATE:
 		hWndMain = hWnd;
+		SetTimer(hWnd, 0, 16, NULL);
+		rec.Translate(300, 300);
+		break;
 
+	case WM_TIMER:
+		DoubleBuffer();
+
+		if (isStart)
+		{
+			if (cnt < 10)
+			{
+				rec.Scaling(1.1f, 1.1f);
+				cnt++;
+			}
+			else
+			{
+				if (cnt2 > 0)
+				{
+					rec.Scaling(0.9f, 0.9f);
+					cnt2--;
+				}
+			}
+		}
+
+		InvalidateRect(hWnd, NULL, FALSE);
 		break;
 
 	case WM_LBUTTONDOWN:
-		rec.Translate(10, 0);
+		//rec.Translate(20, 0);
+		isStart = true;
 		InvalidateRect(hWnd, NULL, TRUE);
 		break;
 
 	case WM_RBUTTONDOWN:
-		rec.Scaling(1.1f, 1.1f);
+		//rec.Scaling(1.1f, 1.1f);
+		rec.Translate(0, 10);
 		InvalidateRect(hWnd, NULL, TRUE);
 		break;
 
 	case WM_KEYDOWN:
 		if (wParam == VK_SPACE)
 		{
-			rec.RotateZ(30);
+			rec.Rotate(30);
 			InvalidateRect(hWnd, NULL, TRUE);
 		}
 		break;
 
 	case WM_PAINT:
 	{
-		PAINTSTRUCT ps;
-		HDC hdc = BeginPaint(hWnd, &ps);
+		hdc = BeginPaint(hWnd, &ps);
+		GetClientRect(hWnd, &crt);
+		hMemDC = CreateCompatibleDC(hdc);
+		OldBit = (HBITMAP)SelectObject(hMemDC, hBit);
 
-		SetCartesianCoordinateSystem(hdc, hWnd);
-		rec.Draw(hdc, 0);
+		BitBlt(hdc, 0, 0, crt.right, crt.bottom, hMemDC, 0, 0, SRCCOPY);
 
+		SelectObject(hMemDC, OldBit);
+		DeleteDC(hMemDC);
 		EndPaint(hWnd, &ps);
 	}
 	break;

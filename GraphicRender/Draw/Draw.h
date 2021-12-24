@@ -16,3 +16,5 @@ void DrawCircle(HDC hDC, const float x, const float y, const float radius, COLOR
 void DrawRectangle(HDC hDC, const Vector2& lb, const Vector2& rt, const Vector2& lt, const Vector2& rb, COLORREF color);
 void DrawRectangle(HDC hDC, const Vector2& leftBottom, const Vector2& rightTop, COLORREF color);
 void DrawRectangle(HDC hDC, const float left, const float bottom, const float right, const float top, COLORREF color);
+
+void DrawCoordinate(HDC hDC, int leftX, int rightX, int upY, int downY, COLORREF color);
